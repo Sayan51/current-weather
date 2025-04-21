@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Weather Forecast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #87ceeb;
+            color: #333;
+        }
+        header {
+            background-color: #1f73d3;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #1f73d3;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .forecast-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .day-forecast {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .day-forecast:last-child {
+            border-bottom: none;
+        }
+        .day-name {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Weather Forecast</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="settings.html">Settings</a>
+        <a href="about.html">About</a>
+    </nav>
+    <div class="forecast-container" id="forecast">
+        <p>Loading forecast...</p>
+    </div>
+
+    <script>
+        // Example static forecast data
+        const forecastData = [
+            { day: 'Monday', condition: 'Sunny', high: 25, low: 15 },
+            { day: 'Tuesday', condition: 'Cloudy', high: 22, low: 14 },
+            { day: 'Wednesday', condition: 'Rainy', high: 20, low: 13 },
+            { day: 'Thursday', condition: 'Partly Cloudy', high: 23, low: 16 },
+            { day: 'Friday', condition: 'Sunny', high: 26, low: 17 }
+        ];
+
+        const forecastContainer = document.getElementById('forecast');
+        forecastContainer.innerHTML = '';
+
+        forecastData.forEach(dayForecast => {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'day-forecast';
+            dayDiv.innerHTML = `
+                <div class="day-name">${dayForecast.day}</div>
+                <div>Condition: ${dayForecast.condition}</div>
+                <div>High: ${dayForecast.high}°C</div>
+                <div>Low: ${dayForecast.low}°C</div>
+            `;
+            forecastContainer.appendChild(dayDiv);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+        }
+        header {
+            background-color: #1f73d3;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            margin: 10px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #1f73d3;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .settings-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        select {
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #1f73d3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #155a9c;
+        }
+        .message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Settings</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="forecast.html">Forecast</a>
+        <a href="about.html">About</a>
+    </nav>
+    <div class="settings-container">
+        <label for="unit-select">Temperature Unit:</label>
+        <select id="unit-select">
+            <option value="celsius">Celsius (°C)</option>
+            <option value="fahrenheit">Fahrenheit (°F)</option>
+        </select>
+        <button id="save-button">Save Settings</button>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        const unitSelect = document.getElementById('unit-select');
+        const saveButton = document.getElementById('save-button');
+        const messageDiv = document.getElementById('message');
+
+        // Load saved unit from localStorage
+        const savedUnit = localStorage.getItem('temperatureUnit');
+        if (savedUnit) {
+            unitSelect.value = savedUnit;
+        }
+
+        saveButton.addEventListener('click', () => {
+            const selectedUnit = unitSelect.value;
+            localStorage.setItem('temperatureUnit', selectedUnit);
+            messageDiv.textContent = 'Settings saved!';
+            setTimeout(() => {
+                messageDiv.textContent = '';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
